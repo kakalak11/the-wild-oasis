@@ -77,7 +77,7 @@ isCreating
         <Modal>
           <Menus.Menu>
             <Menus.Toggle id={cabinId} />
-            <Menus.List name={cabinId}>
+            <Menus.List id={cabinId}>
               <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
                 Duplicate
               </Menus.Button>
