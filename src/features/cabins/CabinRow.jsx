@@ -62,6 +62,8 @@ isCreating
     });
   }
 
+  // TODO: Add placeholder loading effect for the cabin picture while loading
+
   return (
     <Table.Row>
       <Img src={image} />
