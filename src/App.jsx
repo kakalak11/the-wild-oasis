@@ -12,18 +12,17 @@ import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
+import AppLayout from "./ui/AppLayout";
 import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
-import AppLayout from "./ui/AppLayout";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import { DarkModeProvider } from "./context/DarkModeContext";
-
-// db password: N30b9z8ap1pP3dTh
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000,
+      // staleTime: 60 * 1000,
+      staleTime: 0,
     },
   },
 });
@@ -33,6 +32,7 @@ function App() {
     <DarkModeProvider>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
+
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
@@ -53,6 +53,7 @@ function App() {
               <Route path="settings" element={<Settings />} />
               <Route path="account" element={<Account />} />
             </Route>
+
             <Route path="login" element={<Login />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
@@ -61,7 +62,7 @@ function App() {
         <Toaster
           position="top-center"
           gutter={12}
-          containerStyle={{ margin: "8px " }}
+          containerStyle={{ margin: "8px" }}
           toastOptions={{
             success: {
               duration: 3000,

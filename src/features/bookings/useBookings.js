@@ -13,6 +13,7 @@ export function useBookings() {
     !filterValue || filterValue === "all"
       ? null
       : { field: "status", value: filterValue };
+  // { field: "totalPrice", value: 5000, method: "gte" };
 
   // SORT
   const sortByRaw = searchParams.get("sortBy") || "startDate-desc";
@@ -32,22 +33,20 @@ export function useBookings() {
     queryFn: () => getBookings({ filter, sortBy, page }),
   });
 
-  // PRE_FETCHING
+  // PRE-FETCHING
   const pageCount = Math.ceil(count / PAGE_SIZE);
 
-  if (page < pageCount) {
+  if (page < pageCount)
     queryClient.prefetchQuery({
       queryKey: ["bookings", filter, sortBy, page + 1],
       queryFn: () => getBookings({ filter, sortBy, page: page + 1 }),
     });
-  }
 
-  if (page > 1) {
+  if (page > 1)
     queryClient.prefetchQuery({
       queryKey: ["bookings", filter, sortBy, page - 1],
       queryFn: () => getBookings({ filter, sortBy, page: page - 1 }),
     });
-  }
 
-  return { isLoading, bookings, error, count };
+  return { isLoading, error, bookings, count };
 }

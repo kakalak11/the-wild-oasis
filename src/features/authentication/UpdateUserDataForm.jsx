@@ -19,6 +19,7 @@ function UpdateUserDataForm() {
   } = useUser();
 
   const { updateUser, isUpdating } = useUpdateUser();
+
   const [fullName, setFullName] = useState(currentFullName);
   const [avatar, setAvatar] = useState(null);
 
@@ -46,6 +47,7 @@ function UpdateUserDataForm() {
       <FormRow label="Email address">
         <Input value={email} disabled />
       </FormRow>
+
       <FormRow label="Full name">
         <Input
           type="text"
@@ -55,6 +57,7 @@ function UpdateUserDataForm() {
           disabled={isUpdating}
         />
       </FormRow>
+
       <FormRow label="Avatar image">
         <FileInput
           id="avatar"
@@ -63,16 +66,17 @@ function UpdateUserDataForm() {
           disabled={isUpdating}
         />
       </FormRow>
+
       <FormRow>
         <Button
-          onClick={handleCancel}
-          disabled={isUpdating}
           type="reset"
           variation="secondary"
+          disabled={isUpdating}
+          onClick={handleCancel}
         >
           Cancel
         </Button>
-        <Button>Update account</Button>
+        <Button disabled={isUpdating}>Update account</Button>
       </FormRow>
     </Form>
   );
